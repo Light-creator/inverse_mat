@@ -1,20 +1,10 @@
-__kernel void hello(__global char* string)
-{
-    string[0] = 'H';
-    string[1] = 'e';
-    string[2] = 'l';
-    string[3] = 'l';
-    string[4] = 'o';
+__kernel void vectorAdd(
+__global const double *A,
+__global const double *B, 
+__global double *C, int n) 
+{ 
+// Vector element index 
+  int i = get_global_id(0); 
 
-    string[5] = ',';
-
-    string[6] = ' ';
-    string[7] = 'W';
-    string[8] = 'o';
-    string[9] = 'r';
-    string[10] = 'l';
-    string[11] = 'd';
-
-    string[12] = '!';
-    string[13] = '\0';
+  if (i < n) C[i] = A[i] + B[i]; 
 }
